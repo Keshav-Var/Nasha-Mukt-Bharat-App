@@ -8,7 +8,7 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Nasha Mukt Bharat"),
         centerTitle: true,
-        backgroundColor: Colors.purple[600],
+        backgroundColor: Colors.purple[500],
       ),
       body: Container(
           child: const Center(
