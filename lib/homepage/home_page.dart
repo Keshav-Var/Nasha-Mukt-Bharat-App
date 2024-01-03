@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:mini_project/blog.dart';
-import 'package:mini_project/drawer.dart';
-import 'package:mini_project/events.dart';
-import 'package:mini_project/first_page.dart';
-import 'package:mini_project/login_page.dart';
-import 'package:mini_project/my_apointment.dart';
-import 'package:mini_project/my_records.dart';
+import 'package:mini_project/pages/blog_page.dart';
+import 'package:mini_project/homepage/bottom_navigation_bar.dart';
+import 'package:mini_project/homepage/drawer.dart';
+import 'package:mini_project/pages/events_page.dart';
+import 'package:mini_project/homepage/first_page.dart';
+import 'package:mini_project/pages/login_page.dart';
+import 'package:mini_project/pages/my_apointment_page.dart';
+import 'package:mini_project/pages/my_records_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -24,11 +25,12 @@ class _HomePageState extends State<HomePage> {
     Blog(),
   ];
   Widget currScreen = screens[0];
-
+  int selectedInBottomNav = 1;
   //for switching screens
   void switchScreen(int id) {
     setState(() {
       currScreen = screens[id];
+      selectedInBottomNav = id;
     });
     //can be used for making whole page
     // Navigator.push(context,
@@ -49,6 +51,11 @@ class _HomePageState extends State<HomePage> {
       ),
       //drawer
       drawer: MyDrawer(switchScreen: switchScreen),
+      //Bottom Navigation Bar
+      bottomNavigationBar: BottomNavigation(
+        selectedItem: selectedInBottomNav,
+        callback: switchScreen,
+      ),
       //body
       body: currScreen,
     );
