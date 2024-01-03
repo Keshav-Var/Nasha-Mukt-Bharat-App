@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class BottomNavigation extends StatelessWidget {
   final void Function(int) callback;
@@ -15,30 +16,37 @@ class BottomNavigation extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             NavigationItem(
-              id: 1,
+              id: 0,
               title: "Home",
               icon: Icons.home,
+              callback: callback,
+              selected: (selectedItem == 0),
+            ),
+            NavigationItem(
+              id: 1,
+              title: "Centre",
+              icon: FontAwesomeIcons.solidSquarePlus,
               callback: callback,
               selected: (selectedItem == 1),
             ),
             NavigationItem(
               id: 2,
-              title: "Centre",
-              icon: Icons.list,
+              title: "Blogs",
+              icon: FontAwesomeIcons.blog,
               callback: callback,
               selected: (selectedItem == 2),
             ),
             NavigationItem(
               id: 3,
-              title: "Home",
-              icon: Icons.home,
+              title: "Event",
+              icon: Icons.event,
               callback: callback,
               selected: (selectedItem == 3),
             ),
             NavigationItem(
               id: 4,
-              title: "Home",
-              icon: Icons.home,
+              title: "Appointments",
+              icon: FontAwesomeIcons.solidCalendarCheck,
               callback: callback,
               selected: (selectedItem == 4),
             ),
@@ -79,6 +87,7 @@ class NavigationItem extends StatelessWidget {
                     ? const Color.fromARGB(189, 196, 236, 198)
                     : Colors.black45,
                 size: selected ? 30 : 27,
+                weight: selected ? 800 : 400,
               ),
               Text(
                 title,
@@ -87,6 +96,7 @@ class NavigationItem extends StatelessWidget {
                       ? const Color.fromARGB(189, 196, 236, 198)
                       : Colors.black45,
                   fontSize: 12,
+                  fontWeight: selected ? FontWeight.w600 : FontWeight.w400,
                 ),
               ),
             ],

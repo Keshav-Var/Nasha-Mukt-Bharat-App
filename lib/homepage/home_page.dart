@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mini_project/pages/blog_page.dart';
 import 'package:mini_project/homepage/bottom_navigation_bar.dart';
 import 'package:mini_project/homepage/drawer.dart';
+import 'package:mini_project/pages/center_list_page.dart';
 import 'package:mini_project/pages/events_page.dart';
 import 'package:mini_project/homepage/first_page.dart';
 import 'package:mini_project/pages/login_page.dart';
@@ -18,11 +19,12 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   static const List screens = <Widget>[
     FirstPage(),
-    LoginPage(),
-    MyApointment(),
-    MyRecords(),
-    Events(),
+    CenterListPage(),
     Blog(),
+    Events(),
+    MyApointment(),
+    LoginPage(),
+    MyRecords(),
   ];
   Widget currScreen = screens[0];
   int selectedInBottomNav = 1;
