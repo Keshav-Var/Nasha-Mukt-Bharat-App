@@ -23,18 +23,6 @@ class MyDrawer extends StatelessWidget {
             id: 6,
             callback: switchScreen,
           ),
-          ListItem(
-            title: "Events",
-            icon: Icons.event,
-            id: 3,
-            callback: switchScreen,
-          ),
-          ListItem(
-            title: "Blog",
-            icon: FontAwesomeIcons.blog,
-            id: 2,
-            callback: switchScreen,
-          ),
         ],
       ),
     );

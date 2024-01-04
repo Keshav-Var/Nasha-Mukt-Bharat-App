@@ -27,16 +27,21 @@ class _HomePageState extends State<HomePage> {
     MyRecords(),
   ];
   Widget currScreen = screens[0];
-  int selectedInBottomNav = 1;
-  //for switching screens
+  int selectedInBottomNav = 0;
+  //for switching screens(for bottom navigation bar)
   void switchScreen(int id) {
     setState(() {
       currScreen = screens[id];
       selectedInBottomNav = id;
     });
-    //can be used for making whole page
-    // Navigator.push(context,
-    //     MaterialPageRoute(builder: (BuildContext context) => screens[id]));
+  }
+
+  //can be used for push page(for drawer)
+  void pushScreen(int id) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (BuildContext context) => screens[id]),
+    );
   }
 
   @override
@@ -52,7 +57,7 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: const Color.fromARGB(255, 109, 158, 53),
       ),
       //drawer
-      drawer: MyDrawer(switchScreen: switchScreen),
+      drawer: MyDrawer(switchScreen: pushScreen),
       //Bottom Navigation Bar
       bottomNavigationBar: BottomNavigation(
         selectedItem: selectedInBottomNav,

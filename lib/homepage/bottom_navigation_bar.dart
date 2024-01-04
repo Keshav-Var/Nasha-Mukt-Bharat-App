@@ -10,48 +10,64 @@ class BottomNavigation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Ink(
-        height: 60,
-        color: const Color.fromARGB(255, 109, 158, 53),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            NavigationItem(
+      height: 60,
+      color: const Color.fromARGB(255, 109, 158, 53),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+          Expanded(
+            flex: 95,
+            child: NavigationItem(
               id: 0,
               title: "Home",
               icon: Icons.home,
               callback: callback,
               selected: (selectedItem == 0),
             ),
-            NavigationItem(
+          ),
+          Expanded(
+            flex: 95,
+            child: NavigationItem(
               id: 1,
               title: "Centre",
               icon: FontAwesomeIcons.solidSquarePlus,
               callback: callback,
               selected: (selectedItem == 1),
             ),
-            NavigationItem(
+          ),
+          Expanded(
+            flex: 95,
+            child: NavigationItem(
               id: 2,
               title: "Blogs",
               icon: FontAwesomeIcons.blog,
               callback: callback,
               selected: (selectedItem == 2),
             ),
-            NavigationItem(
+          ),
+          Expanded(
+            flex: 95,
+            child: NavigationItem(
               id: 3,
               title: "Event",
               icon: Icons.event,
               callback: callback,
               selected: (selectedItem == 3),
             ),
-            NavigationItem(
+          ),
+          Expanded(
+            flex: 110,
+            child: NavigationItem(
               id: 4,
-              title: "Appointments",
+              title: "Appointment",
               icon: FontAwesomeIcons.solidCalendarCheck,
               callback: callback,
               selected: (selectedItem == 4),
             ),
-          ],
-        ));
+          ),
+        ],
+      ),
+    );
   }
 }
 
@@ -71,36 +87,34 @@ class NavigationItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: InkWell(
-        onTap: () {
-          callback(id);
-        },
-        child: Container(
-          alignment: Alignment.center,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Icon(
-                icon,
+    return InkWell(
+      onTap: () {
+        callback(id);
+      },
+      child: Container(
+        alignment: Alignment.center,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Icon(
+              icon,
+              color: selected
+                  ? const Color.fromARGB(189, 196, 236, 198)
+                  : Colors.black45,
+              size: selected ? 26 : 23,
+              weight: selected ? 800 : 400,
+            ),
+            Text(
+              title,
+              style: TextStyle(
                 color: selected
                     ? const Color.fromARGB(189, 196, 236, 198)
                     : Colors.black45,
-                size: selected ? 30 : 27,
-                weight: selected ? 800 : 400,
+                fontSize: 12,
+                fontWeight: selected ? FontWeight.w600 : FontWeight.w400,
               ),
-              Text(
-                title,
-                style: TextStyle(
-                  color: selected
-                      ? const Color.fromARGB(189, 196, 236, 198)
-                      : Colors.black45,
-                  fontSize: 12,
-                  fontWeight: selected ? FontWeight.w600 : FontWeight.w400,
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
