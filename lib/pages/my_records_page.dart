@@ -5,10 +5,13 @@ class MyRecords extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: const Color.fromARGB(189, 196, 236, 198),
-      child: const Center(
-        child: Text("MyRecords"),
+    return Scaffold(
+      appBar: AppBar(),
+      body: Container(
+        color: const Color.fromARGB(189, 196, 236, 198),
+        child: const Center(
+          child: Text("My records"),
+        ),
       ),
     );
   }
