@@ -9,63 +9,67 @@ class BottomNavigation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Ink(
-      height: 60,
-      color: const Color.fromARGB(255, 109, 158, 53),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[
-          Expanded(
-            flex: 95,
-            child: NavigationItem(
-              id: 0,
-              title: "Home",
-              icon: Icons.home,
-              callback: callback,
-              selected: (selectedItem == 0),
+    return Material(
+      elevation: 10,
+      borderRadius: BorderRadius.circular(7),
+      child: Ink(
+        height: 60,
+        //color: const Color.fromARGB(255, 109, 158, 53),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            Expanded(
+              flex: 95,
+              child: NavigationItem(
+                id: 0,
+                title: "Home",
+                icon: Icons.home,
+                callback: callback,
+                selected: (selectedItem == 0),
+              ),
             ),
-          ),
-          Expanded(
-            flex: 95,
-            child: NavigationItem(
-              id: 1,
-              title: "Centre",
-              icon: FontAwesomeIcons.solidSquarePlus,
-              callback: callback,
-              selected: (selectedItem == 1),
+            Expanded(
+              flex: 95,
+              child: NavigationItem(
+                id: 1,
+                title: "Centre",
+                icon: FontAwesomeIcons.solidSquarePlus,
+                callback: callback,
+                selected: (selectedItem == 1),
+              ),
             ),
-          ),
-          Expanded(
-            flex: 95,
-            child: NavigationItem(
-              id: 2,
-              title: "Blogs",
-              icon: FontAwesomeIcons.blog,
-              callback: callback,
-              selected: (selectedItem == 2),
+            Expanded(
+              flex: 95,
+              child: NavigationItem(
+                id: 2,
+                title: "Blogs",
+                icon: FontAwesomeIcons.blog,
+                callback: callback,
+                selected: (selectedItem == 2),
+              ),
             ),
-          ),
-          Expanded(
-            flex: 95,
-            child: NavigationItem(
-              id: 3,
-              title: "Event",
-              icon: Icons.event,
-              callback: callback,
-              selected: (selectedItem == 3),
+            Expanded(
+              flex: 95,
+              child: NavigationItem(
+                id: 3,
+                title: "Event",
+                icon: Icons.event,
+                callback: callback,
+                selected: (selectedItem == 3),
+              ),
             ),
-          ),
-          Expanded(
-            flex: 110,
-            child: NavigationItem(
-              id: 4,
-              title: "Appointment",
-              icon: FontAwesomeIcons.solidCalendarCheck,
-              callback: callback,
-              selected: (selectedItem == 4),
+            Expanded(
+              flex: 110,
+              child: NavigationItem(
+                id: 4,
+                title: "Appointment",
+                icon: FontAwesomeIcons.solidCalendarCheck,
+                callback: callback,
+                selected: (selectedItem == 4),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -99,7 +103,7 @@ class NavigationItem extends StatelessWidget {
             Icon(
               icon,
               color: selected
-                  ? const Color.fromARGB(189, 196, 236, 198)
+                  ? const Color.fromARGB(255, 109, 158, 53)
                   : Colors.black45,
               size: selected ? 26 : 23,
               weight: selected ? 800 : 400,
@@ -108,7 +112,7 @@ class NavigationItem extends StatelessWidget {
               title,
               style: TextStyle(
                 color: selected
-                    ? const Color.fromARGB(189, 196, 236, 198)
+                    ? const Color.fromARGB(255, 109, 158, 53)
                     : Colors.black45,
                 fontSize: 12,
                 fontWeight: selected ? FontWeight.w600 : FontWeight.w400,
