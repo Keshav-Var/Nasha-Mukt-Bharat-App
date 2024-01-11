@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+// import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mini_project/pages/blog_page.dart';
 import 'package:mini_project/homepage/bottom_navigation_bar.dart';
 import 'package:mini_project/homepage/drawer.dart';
@@ -51,10 +52,30 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: const Text(
           "Nasha Mukt Bharat",
-          style: TextStyle(color: Colors.black45),
+          style: TextStyle(color: Colors.black, fontSize: 20),
         ),
+        actions: [
+          InkWell(
+            child: Container(
+              margin: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(
+                  color: const Color.fromARGB(255, 109, 158, 53),
+                  width: 1.5,
+                ),
+              ),
+              child: const CircleAvatar(
+                radius: 30,
+                backgroundImage: AssetImage("lib/assets/images/profile.png"),
+                backgroundColor: Colors.blue,
+                foregroundColor: Colors.black,
+              ),
+            ),
+          )
+        ],
         centerTitle: true,
-        backgroundColor: const Color.fromARGB(255, 109, 158, 53),
+        elevation: 20,
       ),
       //drawer
       drawer: MyDrawer(switchScreen: pushScreen),
@@ -65,6 +86,7 @@ class _HomePageState extends State<HomePage> {
       ),
       //body
       body: currScreen,
+      extendBodyBehindAppBar: true,
     );
   }
 }

@@ -7,10 +7,13 @@ class MyDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: const Color.fromARGB(255, 241, 250, 231),
+      // backgroundColor: const Color.fromARGB(255, 241, 250, 231),
       child: ListView(
         children: <Widget>[
           const DrawerHead(),
+          const SizedBox(
+            height: 30,
+          ),
           ListItem(
             title: "Login",
             icon: Icons.login,
@@ -18,8 +21,44 @@ class MyDrawer extends StatelessWidget {
             callback: switchScreen,
           ),
           ListItem(
-            title: "My records",
+            title: "My activities",
             icon: FontAwesomeIcons.clipboard,
+            id: 6,
+            callback: switchScreen,
+          ),
+          ListItem(
+            title: "About us",
+            icon: FontAwesomeIcons.info,
+            id: 6,
+            callback: switchScreen,
+          ),
+          ListItem(
+            title: "Contact us",
+            icon: FontAwesomeIcons.phone,
+            id: 6,
+            callback: switchScreen,
+          ),
+          const Divider(
+            thickness: 1,
+            color: Colors.black45,
+            indent: 20,
+            endIndent: 40,
+          ),
+          ListItem(
+            title: "Invite your friend",
+            icon: FontAwesomeIcons.userPlus,
+            id: 6,
+            callback: switchScreen,
+          ),
+          ListItem(
+            title: "Rate us",
+            icon: FontAwesomeIcons.solidStar,
+            id: 6,
+            callback: switchScreen,
+          ),
+          ListItem(
+            title: "Log out",
+            icon: Icons.logout,
             id: 6,
             callback: switchScreen,
           ),
@@ -44,7 +83,7 @@ class DrawerHead extends StatelessWidget {
         children: [
           CircleAvatar(
             radius: 50,
-            foregroundImage: AssetImage("lib/assets/images/logo.jpeg"),
+            foregroundImage: AssetImage("lib/assets/images/profile.png"),
           ),
           Text(
             "Name",
