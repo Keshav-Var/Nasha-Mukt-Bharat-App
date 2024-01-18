@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mini_project/homepage/splash_screen.dart';
+import 'package:mini_project/routes/routes.dart';
+import 'package:mini_project/routes/get_route.dart';
 
 void main() {
   runApp(const MyApp());
@@ -7,6 +8,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+  String getInitialRoute() => AppRoutes.splash;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -18,7 +20,9 @@ class MyApp extends StatelessWidget {
           seedColor: const Color.fromARGB(255, 160, 214, 97),
         ),
       ),
-      home: const SplashScreen(),
+      initialRoute: getInitialRoute(),
+      // home: const SplashScreen(),
+      onGenerateRoute: (settings) => getRoute(settings),
     );
   }
 }

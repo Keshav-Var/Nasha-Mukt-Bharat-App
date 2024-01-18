@@ -10,7 +10,7 @@ class MyApointment extends StatelessWidget {
       body: Container(
         color: const Color.fromARGB(189, 196, 236, 198),
         child: const Center(
-          child: Text("My Apointment"),
+          child: Text("my appointment"),
         ),
       ),
     );

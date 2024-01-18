@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+// import 'package:share_plus/share_plus.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:mini_project/routes/routes.dart';
 
 class FirstPage extends StatefulWidget {
   const FirstPage({super.key});
@@ -11,295 +13,270 @@ class FirstPage extends StatefulWidget {
 class _FirstPageState extends State<FirstPage> {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.vertical,
-      child: Container(
-        height: 1050,
-        padding: const EdgeInsets.all(10),
-        //color: const Color.fromARGB(189, 196, 236, 198),
+    return Container(
+      height: double.maxFinite,
+      padding: const EdgeInsets.all(10),
+      child: const SingleChildScrollView(
+        scrollDirection: Axis.vertical,
         child: Column(
-          // mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const SizedBox(
-              height: 90,
+            SectionText(title: "Blogs"),
+            BlogCard(
+              routeName: AppRoutes.article,
+              image: "assets/images/sucessStory.jpeg",
             ),
-            const Align(
-              alignment: AlignmentDirectional.topStart,
-              child: Text(
-                " Blogs",
-                style: TextStyle(
-                  fontSize: 20,
-                ),
-              ),
-            ),
-            InkWell(
-              onTap: () {},
-              child: const SizedBox(
-                height: 200,
-                width: double.infinity,
-                child: Card(
-                  color: Color.fromARGB(189, 196, 236, 198),
-                  child: Center(
-                    child: Expanded(
-                      child: Image(
-                        image: AssetImage("lib/assets/images/sucessStory.jpeg"),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(
+            SizedBox(
               height: 10,
             ),
-            const Align(
-              alignment: AlignmentDirectional.topStart,
-              child: Text(
-                "Our Service",
-                style: TextStyle(
-                  fontSize: 20,
-                ),
-              ),
-            ),
+            SectionText(title: "Our Services"),
             Wrap(
               children: [
-                InkWell(
-                  onTap: () {},
-                  child: const SizedBox(
-                    height: 160,
-                    width: 160,
-                    child: Card(
-                      color: Colors.purple,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            FontAwesomeIcons.capsules,
-                            size: 60,
-                            color: Colors.white,
-                          ),
-                          Text(
-                            "View",
-                            style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.white),
-                          ),
-                          Text(
-                            "Prescription",
-                            style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.white),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
+                ServiceCard(
+                  routeName: AppRoutes.prescription,
+                  icon: FontAwesomeIcons.capsules,
+                  title: "View\nPrescription",
+                  color: Colors.purple,
                 ),
-                InkWell(
-                  onTap: () {},
-                  child: const SizedBox(
-                    height: 160,
-                    width: 160,
-                    child: Card(
-                      color: Colors.blue,
-                      child: Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              FontAwesomeIcons.file,
-                              size: 60,
-                              color: Colors.white,
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            Text(
-                              "My Records",
-                              style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.white),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
+                ServiceCard(
+                  routeName: AppRoutes.myRecords,
+                  icon: FontAwesomeIcons.file,
+                  title: "\nMy Records",
+                  color: Colors.blue,
                 ),
-                InkWell(
-                  onTap: () {},
-                  child: const SizedBox(
-                    height: 160,
-                    width: 160,
-                    child: Card(
-                      color: Colors.green,
-                      child: Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              FontAwesomeIcons.calendarCheck,
-                              size: 60,
-                              color: Colors.white,
-                            ),
-                            Text(
-                              "Book",
-                              style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.white),
-                            ),
-                            Text(
-                              "Appointment",
-                              style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.white),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
+                ServiceCard(
+                  routeName: AppRoutes.bookAppointment,
+                  icon: FontAwesomeIcons.calendarCheck,
+                  title: "Book \nAppointment",
+                  color: Colors.green,
                 ),
-                InkWell(
-                  onTap: () {},
-                  child: const SizedBox(
-                    height: 160,
-                    width: 160,
-                    child: Card(
-                      color: Colors.pink,
-                      margin: EdgeInsets.all(5),
-                      child: Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              FontAwesomeIcons.database,
-                              size: 60,
-                              color: Colors.white,
-                            ),
-                            Text(
-                              "Upload",
-                              style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.white),
-                            ),
-                            Text(
-                              "Document",
-                              style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.white),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+                ServiceCard(
+                    routeName: AppRoutes.uploadDoc,
+                    icon: FontAwesomeIcons.database,
+                    title: "Upload Documents",
+                    color: Colors.pink)
               ],
             ),
-            const SizedBox(
+            SizedBox(
               height: 20,
             ),
-            const Align(
-              alignment: AlignmentDirectional.topStart,
-              child: Text(
-                "Invite your friend",
-                style: TextStyle(
-                  fontSize: 20,
-                ),
-              ),
-            ),
-            InkWell(
-              onTap: () {},
-              child: const SizedBox(
-                height: 110,
-                width: double.infinity,
-                child: Card(
-                  child: Center(
-                    child: Expanded(
-                      child: Image(
-                        image: AssetImage("lib/assets/images/invite.jpeg"),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(
+            SectionText(title: "Invite your friends"),
+            InviteCard(),
+            SizedBox(
               height: 20,
             ),
-            const Align(
-              alignment: AlignmentDirectional.topStart,
-              child: Text(
-                "Helpline",
-                style: TextStyle(
-                  fontSize: 20,
-                ),
-              ),
-            ),
-            InkWell(
-              onTap: () {},
-              child: const SizedBox(
-                height: 100,
-                width: double.infinity,
-                child: Card(
-                  color: Color.fromARGB(188, 28, 212, 37),
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Row(
-                        children: [
-                          SizedBox(
-                            width: 20,
-                          ),
-                          Icon(Icons.call),
-                          SizedBox(
-                            width: 20,
-                          ),
-                          Text(
-                            "Tollfree no:14446",
-                            style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.white),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          SizedBox(
-                            width: 20,
-                          ),
-                          Icon(Icons.call),
-                          SizedBox(
-                            width: 20,
-                          ),
-                          Text(
-                            "Tollfree no:011 2553 2553",
-                            style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.white),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
+            SectionText(title: "Helpline"),
+            HelplineCard(),
           ],
         ),
       ),
     );
   }
 }
+
+class InviteCard extends StatelessWidget {
+  const InviteCard({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        // _share(context);
+      },
+      child: const SizedBox(
+        height: 110,
+        width: double.infinity,
+        child: Card(
+          color: Color.fromRGBO(33, 150, 243, 1),
+          child: Center(
+            child: Row(
+              children: [
+                Padding(
+                  padding: EdgeInsets.all(10),
+                  child: Text(
+                    "Invite your friend's & \nfamily",
+                    style: TextStyle(fontSize: 20, color: Colors.white),
+                  ),
+                ),
+                Image(
+                  image: AssetImage("assets/images/invite_friends.jpeg"),
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class HelplineCard extends StatelessWidget {
+  const HelplineCard({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {},
+      child: const SizedBox(
+        height: 100,
+        width: double.infinity,
+        child: Card(
+          color: Color.fromARGB(188, 28, 212, 37),
+          child: Column(
+            children: [
+              SizedBox(
+                height: 20,
+              ),
+              Row(
+                children: [
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Icon(Icons.call),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Text(
+                    "Tollfree no:14446",
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white),
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Icon(Icons.call),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Text(
+                    "Tollfree no:011 2553 2553",
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class BlogCard extends StatelessWidget {
+  final String image;
+  final String routeName;
+  const BlogCard({
+    required this.image,
+    super.key,
+    required this.routeName,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        Navigator.pushNamed(context, routeName);
+      },
+      child: SizedBox(
+        height: 200,
+        width: double.infinity,
+        child: Card(
+          color: const Color.fromARGB(189, 196, 236, 198),
+          child: Flex(
+            direction: Axis.horizontal,
+            children: [
+              Expanded(
+                child: Image(
+                  image: AssetImage(image),
+                  fit: BoxFit.fill,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class SectionText extends StatelessWidget {
+  final String title;
+  const SectionText({required this.title, super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: Alignment.topLeft,
+      child: Text(
+        title,
+        textAlign: TextAlign.left,
+        style: const TextStyle(
+          fontSize: 20,
+        ),
+      ),
+    );
+  }
+}
+
+class ServiceCard extends StatelessWidget {
+  final IconData icon;
+  final String title;
+  final Color color;
+  final String routeName;
+  const ServiceCard(
+      {required this.icon,
+      required this.title,
+      required this.color,
+      super.key,
+      required this.routeName});
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        Navigator.pushNamed(context, routeName);
+      },
+      child: SizedBox(
+        height: 160,
+        width: 160,
+        child: Card(
+          color: color,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                icon,
+                size: 60,
+                color: Colors.white,
+              ),
+              Text(
+                title,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.white),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+// void _share(BuildContext context) {
+//   String message = "Check out this amazing app!";
+//   String appurl = "https:www.gfg.com";
+//   String completeMessage = "$message $appurl";
+
+//   Share.share(completeMessage);
+// }

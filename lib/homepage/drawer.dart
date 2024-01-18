@@ -1,44 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:mini_project/routes/routes.dart';
 
 class MyDrawer extends StatelessWidget {
-  final Function(int) switchScreen;
-  const MyDrawer({required this.switchScreen, super.key});
+  const MyDrawer({super.key});
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      // backgroundColor: const Color.fromARGB(255, 241, 250, 231),
       child: ListView(
-        children: <Widget>[
-          const DrawerHead(),
-          const SizedBox(
+        children: const <Widget>[
+          DrawerHead(),
+          SizedBox(
             height: 30,
           ),
           ListItem(
             title: "Login",
             icon: Icons.login,
-            id: 5,
-            callback: switchScreen,
+            routeName: AppRoutes.login,
           ),
           ListItem(
             title: "My activities",
             icon: FontAwesomeIcons.clipboard,
-            id: 6,
-            callback: switchScreen,
+            routeName: AppRoutes.article,
           ),
           ListItem(
             title: "About us",
-            icon: FontAwesomeIcons.info,
-            id: 6,
-            callback: switchScreen,
+            icon: FontAwesomeIcons.circleInfo,
+            routeName: AppRoutes.article,
           ),
           ListItem(
             title: "Contact us",
             icon: FontAwesomeIcons.phone,
-            id: 6,
-            callback: switchScreen,
+            routeName: AppRoutes.article,
           ),
-          const Divider(
+          Divider(
             thickness: 1,
             color: Colors.black45,
             indent: 20,
@@ -47,20 +42,17 @@ class MyDrawer extends StatelessWidget {
           ListItem(
             title: "Invite your friend",
             icon: FontAwesomeIcons.userPlus,
-            id: 6,
-            callback: switchScreen,
+            routeName: AppRoutes.login,
           ),
           ListItem(
             title: "Rate us",
             icon: FontAwesomeIcons.solidStar,
-            id: 6,
-            callback: switchScreen,
+            routeName: AppRoutes.login,
           ),
           ListItem(
             title: "Log out",
             icon: Icons.logout,
-            id: 6,
-            callback: switchScreen,
+            routeName: AppRoutes.login,
           ),
         ],
       ),
@@ -83,7 +75,7 @@ class DrawerHead extends StatelessWidget {
         children: [
           CircleAvatar(
             radius: 50,
-            foregroundImage: AssetImage("lib/assets/images/profile.png"),
+            foregroundImage: AssetImage("assets/images/profile.png"),
           ),
           Text(
             "Name",
@@ -96,15 +88,13 @@ class DrawerHead extends StatelessWidget {
 }
 
 class ListItem extends StatelessWidget {
-  final void Function(int) callback;
   final String title;
   final IconData icon;
-  final int id;
+  final String routeName;
   const ListItem(
-      {required this.id,
-      required this.title,
+      {required this.title,
       required this.icon,
-      required this.callback,
+      required this.routeName,
       super.key});
 
   @override
@@ -121,7 +111,7 @@ class ListItem extends StatelessWidget {
       ),
       onTap: () {
         Navigator.pop(context);
-        callback(id);
+        Navigator.pushNamed(context, routeName);
       },
     );
   }
