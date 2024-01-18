@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:mini_project/homepage/home_page.dart';
+import 'package:mini_project/routes/routes.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -16,19 +16,19 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     Timer(
       const Duration(seconds: 5),
-      () => Navigator.pushReplacement(
-        context,
-        MaterialPageRoute<StatelessWidget>(
-            builder: (BuildContext context) => const HomePage()),
-      ),
+      () => Navigator.pushReplacementNamed(context, AppRoutes.home),
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Center(
-      child: Image.asset("lib/assets/images/logo.jpeg"),
-    ));
+      body: Container(
+        color: const Color.fromARGB(255, 255, 255, 2555),
+        child: Center(
+          child: Image.asset("assets/images/logo.jpeg"),
+        ),
+      ),
+    );
   }
 }

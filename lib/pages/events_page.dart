@@ -8,7 +8,7 @@ class Events extends StatelessWidget {
     return Container(
       color: const Color.fromARGB(189, 196, 236, 198),
       child: const Center(
-        child: Text("Events"),
+        child: Text("event page"),
       ),
     );
   }

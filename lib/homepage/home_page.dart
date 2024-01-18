@@ -1,47 +1,36 @@
 import 'package:flutter/material.dart';
-// import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mini_project/pages/blog_page.dart';
 import 'package:mini_project/homepage/bottom_navigation_bar.dart';
 import 'package:mini_project/homepage/drawer.dart';
 import 'package:mini_project/pages/center_list_page.dart';
 import 'package:mini_project/pages/events_page.dart';
 import 'package:mini_project/homepage/first_page.dart';
-import 'package:mini_project/pages/login_page.dart';
 import 'package:mini_project/pages/my_apointment_page.dart';
-import 'package:mini_project/pages/my_records_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
-
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
   static const List screens = <Widget>[
     FirstPage(),
     CenterListPage(),
     Blog(),
     Events(),
     MyApointment(),
-    LoginPage(),
-    MyRecords(),
   ];
-  Widget currScreen = screens[0];
-  int selectedInBottomNav = 0;
-  //for switching screens(for bottom navigation bar)
-  void switchScreen(int id) {
-    setState(() {
-      currScreen = screens[id];
-      selectedInBottomNav = id;
-    });
-  }
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
 
-  //can be used for push page(for drawer)
-  void pushScreen(int id) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (BuildContext context) => screens[id]),
+class _HomePageState extends State<HomePage> {
+  Widget currScreen = HomePage.screens[0];
+  int selectedInBottomNav = 0;
+
+  //for set new screens(for bottom navigation bar)
+  void switchScreen(int id) {
+    setState(
+      () {
+        currScreen = HomePage.screens[id];
+        selectedInBottomNav = id;
+      },
     );
   }
 
@@ -56,6 +45,7 @@ class _HomePageState extends State<HomePage> {
         ),
         actions: [
           InkWell(
+            onTap: () {},
             child: Container(
               margin: const EdgeInsets.all(8),
               decoration: BoxDecoration(
@@ -65,11 +55,8 @@ class _HomePageState extends State<HomePage> {
                   width: 1.5,
                 ),
               ),
-              child: const CircleAvatar(
-                radius: 30,
-                backgroundImage: AssetImage("lib/assets/images/profile.png"),
-                backgroundColor: Colors.blue,
-                foregroundColor: Colors.black,
+              child: const Image(
+                image: AssetImage("assets/images/profile.png"),
               ),
             ),
           )
@@ -78,7 +65,7 @@ class _HomePageState extends State<HomePage> {
         elevation: 20,
       ),
       //drawer
-      drawer: MyDrawer(switchScreen: pushScreen),
+      drawer: const MyDrawer(),
       //Bottom Navigation Bar
       bottomNavigationBar: BottomNavigation(
         selectedItem: selectedInBottomNav,
@@ -86,7 +73,6 @@ class _HomePageState extends State<HomePage> {
       ),
       //body
       body: currScreen,
-      extendBodyBehindAppBar: true,
     );
   }
 }
