@@ -1,22 +1,22 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:mini_project/main.dart';
-import 'package:mini_project/routes/routes.dart';
 import 'package:mini_project/utilities.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class LoginPage extends StatefulWidget {
+class SignupPage extends StatefulWidget {
   final void Function() callback;
-  const LoginPage({required this.callback, super.key});
+  const SignupPage({required this.callback, super.key});
+
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<SignupPage> createState() => _LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
-  final GlobalKey<FormState> fkey = GlobalKey<FormState>();
+class _LoginPageState extends State<SignupPage> {
   final TextEditingController email = TextEditingController();
   final TextEditingController password = TextEditingController();
+  final TextEditingController cpassword = TextEditingController();
+  final fkey = GlobalKey<FormState>();
   bool show = false;
 
   @override
@@ -24,13 +24,13 @@ class _LoginPageState extends State<LoginPage> {
     return Material(
       child: SingleChildScrollView(
         child: SizedBox(
-          height: MediaQuery.of(context).size.height,
+          height: MediaQuery.of(context).size.height * 1.15,
           child: Stack(
             alignment: Alignment.bottomCenter,
             children: [
               Container(
                 width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height,
+                height: MediaQuery.of(context).size.height * 1.15,
                 color: Theme.of(context).primaryColor,
                 child: const Padding(
                   padding: EdgeInsets.all(16.0),
@@ -41,7 +41,7 @@ class _LoginPageState extends State<LoginPage> {
                         height: 80,
                       ),
                       Text(
-                        "Welcome back in ",
+                        "Welcome in ",
                         style: TextStyle(
                           fontSize: 22,
                           color: Colors.white,
@@ -62,7 +62,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
               Container(
                 width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height / 1.35,
+                height: MediaQuery.of(context).size.height / 1.1,
                 decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.vertical(
@@ -80,7 +80,7 @@ class _LoginPageState extends State<LoginPage> {
                       width: double.infinity,
                       padding: const EdgeInsets.all(10.0),
                       child: const Text(
-                        "  Login or Sign up",
+                        "   Sign up",
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w500,
@@ -105,8 +105,8 @@ class _LoginPageState extends State<LoginPage> {
                               labelStyle: TextStyle(color: Colors.grey),
                               focusedBorder: textFieldFoucedBorder,
                               border: textFieldunabledBorder,
-                              constraints: BoxConstraints(
-                                  maxWidth: 280, maxHeight: 80, minHeight: 80),
+                              constraints:
+                                  BoxConstraints(maxWidth: 280, maxHeight: 80),
                             ),
                           ),
                           const SizedBox(
@@ -120,28 +120,12 @@ class _LoginPageState extends State<LoginPage> {
                                 AutovalidateMode.onUserInteraction,
                             validator: passwordValidator,
                             decoration: InputDecoration(
-                              counter: InkWell(
-                                onTap: () => Navigator.pushNamed(
-                                    context, AppRoutes.resetPassword),
-                                child: Text(
-                                  "Forget Password?",
-                                  style: TextStyle(
-                                      decoration: TextDecoration.underline,
-                                      decorationColor:
-                                          Theme.of(context).primaryColor,
-                                      decorationThickness: 2,
-                                      color: Theme.of(context).primaryColor),
-                                ),
-                              ),
                               label: const Text("Password"),
                               labelStyle: const TextStyle(color: Colors.grey),
                               focusedBorder: textFieldFoucedBorder,
                               border: textFieldunabledBorder,
                               constraints: const BoxConstraints(
-                                maxWidth: 280,
-                                maxHeight: 80,
-                                minHeight: 80,
-                              ),
+                                  maxWidth: 280, maxHeight: 80),
                               suffixIcon: Padding(
                                 padding: const EdgeInsets.only(right: 8.0),
                                 child: IconButton(
@@ -160,15 +144,37 @@ class _LoginPageState extends State<LoginPage> {
                           const SizedBox(
                             height: 20,
                           ),
+                          TextFormField(
+                            keyboardType: TextInputType.visiblePassword,
+                            obscureText: true,
+                            controller: cpassword,
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            validator: (value) =>
+                                value == null && value == password.text
+                                    ? "Not match with password"
+                                    : null,
+                            decoration: const InputDecoration(
+                              label: Text("Comfirm Password"),
+                              labelStyle: TextStyle(color: Colors.grey),
+                              focusedBorder: textFieldFoucedBorder,
+                              border: textFieldunabledBorder,
+                              constraints:
+                                  BoxConstraints(maxWidth: 280, maxHeight: 80),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
                           ElevatedButton(
-                            onPressed: login,
+                            onPressed: signup,
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Theme.of(context).primaryColor,
                               elevation: 2,
                               minimumSize: const Size(280, 46),
                             ),
                             child: const Text(
-                              "Login",
+                              "Sign up",
                               style: TextStyle(
                                 fontSize: 20,
                                 color: Colors.white,
@@ -191,7 +197,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         const SizedBox(width: 10),
                         Text(
-                          'Or, login with',
+                          'Or, Signup with',
                           style: TextStyle(
                             fontSize: 16,
                             color: Theme.of(context).disabledColor,
@@ -241,7 +247,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     RichText(
                       text: TextSpan(
-                        text: "Don't have an account?",
+                        text: "Already have an account?",
                         style: const TextStyle(
                           fontWeight: FontWeight.normal,
                           fontSize: 16,
@@ -249,7 +255,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         children: <TextSpan>[
                           TextSpan(
-                            text: ' Sign up',
+                            text: ' Login',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 16,
@@ -271,26 +277,19 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Future<void> login() async {
-    final isvalid = fkey.currentState!.validate();
+  Future<void> signup() async {
+    final bool isvalid = fkey.currentState!.validate();
     if (!isvalid) return;
 
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) => const Center(
-        child: CircularProgressIndicator(),
-      ),
-    );
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email.text.toString().trim(),
         password: password.text.toString().trim(),
       );
     } on FirebaseAuthException catch (e) {
       showSnackBar(e.message);
     }
-
-    navigatorKey.currentState!.pop();
   }
 }
+
+// Future<void> signinWithGoogle() async {}
