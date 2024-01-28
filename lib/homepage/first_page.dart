@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-// import 'package:share_plus/share_plus.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mini_project/routes/routes.dart';
 
@@ -272,11 +271,3 @@ class ServiceCard extends StatelessWidget {
     );
   }
 }
-
-// void _share(BuildContext context) {
-//   String message = "Check out this amazing app!";
-//   String appurl = "https:www.gfg.com";
-//   String completeMessage = "$message $appurl";
-
-//   Share.share(completeMessage);
-// }
