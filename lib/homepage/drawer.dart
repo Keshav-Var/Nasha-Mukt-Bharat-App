@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mini_project/routes/routes.dart';
@@ -8,32 +9,27 @@ class MyDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       child: ListView(
-        children: const <Widget>[
-          DrawerHead(),
-          SizedBox(
+        children: <Widget>[
+          const DrawerHead(),
+          const SizedBox(
             height: 30,
-          ),
-          ListItem(
-            title: "Login",
-            icon: Icons.login,
-            routeName: AppRoutes.login,
           ),
           ListItem(
             title: "My activities",
             icon: FontAwesomeIcons.clipboard,
-            routeName: AppRoutes.article,
+            ontap: () => Navigator.pushNamed(context, AppRoutes.myRecords),
           ),
           ListItem(
             title: "About us",
             icon: FontAwesomeIcons.circleInfo,
-            routeName: AppRoutes.article,
+            ontap: () => Navigator.pushNamed(context, AppRoutes.myRecords),
           ),
           ListItem(
             title: "Contact us",
             icon: FontAwesomeIcons.phone,
-            routeName: AppRoutes.article,
+            ontap: () => Navigator.pushNamed(context, AppRoutes.myRecords),
           ),
-          Divider(
+          const Divider(
             thickness: 1,
             color: Colors.black45,
             indent: 20,
@@ -42,17 +38,17 @@ class MyDrawer extends StatelessWidget {
           ListItem(
             title: "Invite your friend",
             icon: FontAwesomeIcons.userPlus,
-            routeName: AppRoutes.login,
+            ontap: () => Navigator.pushNamed(context, AppRoutes.myRecords),
           ),
           ListItem(
             title: "Rate us",
             icon: FontAwesomeIcons.solidStar,
-            routeName: AppRoutes.login,
+            ontap: () => Navigator.pushNamed(context, AppRoutes.myRecords),
           ),
           ListItem(
             title: "Log out",
             icon: Icons.logout,
-            routeName: AppRoutes.login,
+            ontap: () => FirebaseAuth.instance.signOut(),
           ),
         ],
       ),
@@ -90,11 +86,11 @@ class DrawerHead extends StatelessWidget {
 class ListItem extends StatelessWidget {
   final String title;
   final IconData icon;
-  final String routeName;
+  final void Function() ontap;
   const ListItem(
       {required this.title,
       required this.icon,
-      required this.routeName,
+      required this.ontap,
       super.key});
 
   @override
@@ -111,7 +107,7 @@ class ListItem extends StatelessWidget {
       ),
       onTap: () {
         Navigator.pop(context);
-        Navigator.pushNamed(context, routeName);
+        ontap();
       },
     );
   }
