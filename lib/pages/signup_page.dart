@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:mini_project/firebase.dart';
 import 'package:mini_project/utilities.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -215,7 +216,7 @@ class _LoginPageState extends State<SignupPage> {
                       height: 10,
                     ),
                     OutlinedButton(
-                      onPressed: () {},
+                      onPressed: signInWithGoogle,
                       style: OutlinedButton.styleFrom(
                         side: BorderSide(color: Theme.of(context).primaryColor),
                         backgroundColor: Theme.of(context).cardColor,
@@ -291,5 +292,3 @@ class _LoginPageState extends State<SignupPage> {
     }
   }
 }
-
-// Future<void> signinWithGoogle() async {}

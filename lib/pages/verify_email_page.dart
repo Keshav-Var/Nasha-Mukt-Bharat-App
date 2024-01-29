@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:mini_project/homepage/home_page.dart';
+import 'package:mini_project/pages/homepage/home_page.dart';
 import 'package:mini_project/utilities.dart';
 
 class VerificationPage extends StatefulWidget {

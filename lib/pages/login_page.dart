@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:mini_project/firebase.dart';
 import 'package:mini_project/main.dart';
 import 'package:mini_project/routes/routes.dart';
 import 'package:mini_project/utilities.dart';
@@ -209,7 +210,7 @@ class _LoginPageState extends State<LoginPage> {
                       height: 10,
                     ),
                     OutlinedButton(
-                      onPressed: () {},
+                      onPressed: signInWithGoogle,
                       style: OutlinedButton.styleFrom(
                         side: BorderSide(color: Theme.of(context).primaryColor),
                         backgroundColor: Theme.of(context).cardColor,

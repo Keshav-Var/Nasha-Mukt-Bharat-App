@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mini_project/homepage/home_page.dart';
+import 'package:mini_project/pages/homepage/home_page.dart';
 import 'package:mini_project/pages/article_page.dart';
 import 'package:mini_project/pages/book_appointment_page.dart';
 import 'package:mini_project/pages/my_records_page.dart';
@@ -7,7 +7,7 @@ import 'package:mini_project/pages/prescriptoin_page.dart';
 import 'package:mini_project/pages/reset_password_page.dart';
 import 'package:mini_project/pages/upload_doc.dart';
 import 'package:mini_project/routes/routes.dart';
-import 'package:mini_project/homepage/splash_screen.dart';
+import 'package:mini_project/pages/homepage/splash_screen.dart';
 
 Route<dynamic> getRoute(RouteSettings settings) {
   switch (settings.name) {

@@ -1,11 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mini_project/pages/blog_page.dart';
-import 'package:mini_project/homepage/bottom_navigation_bar.dart';
-import 'package:mini_project/homepage/drawer.dart';
+import 'package:mini_project/pages/homepage/bottom_navigation_bar.dart';
+import 'package:mini_project/pages/homepage/drawer.dart';
 import 'package:mini_project/pages/center_list_page.dart';
 import 'package:mini_project/pages/events_page.dart';
-import 'package:mini_project/homepage/first_page.dart';
+import 'package:mini_project/pages/homepage/first_page.dart';
 import 'package:mini_project/pages/login_page.dart';
 import 'package:mini_project/pages/my_apointment_page.dart';
 import 'package:mini_project/pages/signup_page.dart';
