@@ -8,4 +8,6 @@ class AppRoutes {
   static const uploadDoc = '/upload_doc';
   static const prescription = '/prescription_page';
   static const resetPassword = '/reset_password_page';
+  static const profile = '/profile_page';
+  static const aboutUS = '/about_us';
 }

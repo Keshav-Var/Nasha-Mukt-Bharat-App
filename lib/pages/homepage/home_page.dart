@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mini_project/pages/blog_page.dart';
@@ -10,6 +11,7 @@ import 'package:mini_project/pages/login_page.dart';
 import 'package:mini_project/pages/my_apointment_page.dart';
 import 'package:mini_project/pages/signup_page.dart';
 import 'package:mini_project/pages/verify_email_page.dart';
+import 'package:mini_project/routes/routes.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({super.key});
@@ -75,6 +77,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final user = FirebaseAuth.instance.currentUser!;
+  final db = FirebaseFirestore.instance.collection('users');
+
   Widget currScreen = HomePage.screens[0];
   int selectedInBottomNav = 0;
 
@@ -90,45 +95,64 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      // appbar
-      appBar: AppBar(
-        title: const Text(
-          "Nasha Mukt Bharat",
-          style: TextStyle(color: Colors.black, fontSize: 20),
-        ),
-        actions: [
-          InkWell(
-            onTap: () async {
-              await FirebaseAuth.instance.signOut();
-            },
-            child: Container(
-              margin: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(
-                  color: const Color.fromARGB(255, 109, 158, 53),
-                  width: 1.5,
+    return FutureBuilder(
+        future: db.doc(user.uid).get(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Scaffold(
+                body: Center(
+              child: CircularProgressIndicator(),
+            ));
+          } else if (snapshot.hasError) {
+            return const Scaffold(
+                body: Center(
+              child: Text("Something went worng"),
+            ));
+          } else {
+            final userInfo = snapshot.data!.data()!;
+            return Scaffold(
+              // appbar
+              appBar: AppBar(
+                title: const Text(
+                  "Nasha Mukt Bharat",
+                  style: TextStyle(color: Colors.black, fontSize: 20),
                 ),
+                actions: [
+                  InkWell(
+                    onTap: () =>
+                        Navigator.pushNamed(context, AppRoutes.profile),
+                    child: Padding(
+                        padding: const EdgeInsets.only(right: 8.0),
+                        child: userInfo['profile'] == null
+                            ? CircleAvatar(
+                                backgroundImage: const AssetImage(
+                                    "assets/images/profile.png"),
+                                backgroundColor: Theme.of(context).primaryColor,
+                              )
+                            : CircleAvatar(
+                                backgroundImage:
+                                    NetworkImage(userInfo['profile']!),
+                                backgroundColor: Theme.of(context).primaryColor,
+                              )),
+                  )
+                ],
+                centerTitle: true,
+                elevation: 20,
               ),
-              child: const Image(
-                image: AssetImage("assets/images/profile.png"),
+              //drawer
+              drawer: MyDrawer(
+                email: userInfo['email'],
+                profile: userInfo['profile'],
               ),
-            ),
-          )
-        ],
-        centerTitle: true,
-        elevation: 20,
-      ),
-      //drawer
-      drawer: const MyDrawer(),
-      //Bottom Navigation Bar
-      bottomNavigationBar: BottomNavigation(
-        selectedItem: selectedInBottomNav,
-        callback: switchScreen,
-      ),
-      //body
-      body: currScreen,
-    );
+              //Bottom Navigation Bar
+              bottomNavigationBar: BottomNavigation(
+                selectedItem: selectedInBottomNav,
+                callback: switchScreen,
+              ),
+              //body
+              body: currScreen,
+            );
+          }
+        });
   }
 }

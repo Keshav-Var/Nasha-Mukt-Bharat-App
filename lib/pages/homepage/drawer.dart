@@ -1,16 +1,22 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:mini_project/routes/routes.dart';
 
 class MyDrawer extends StatelessWidget {
-  const MyDrawer({super.key});
+  final String? profile;
+  final String email;
+  const MyDrawer({super.key, required this.email, required this.profile});
   @override
   Widget build(BuildContext context) {
     return Drawer(
       child: ListView(
         children: <Widget>[
-          const DrawerHead(),
+          DrawerHead(
+            email: email,
+            profile: profile,
+          ),
           const SizedBox(
             height: 30,
           ),
@@ -22,7 +28,7 @@ class MyDrawer extends StatelessWidget {
           ListItem(
             title: "About us",
             icon: FontAwesomeIcons.circleInfo,
-            ontap: () => Navigator.pushNamed(context, AppRoutes.myRecords),
+            ontap: () => Navigator.pushNamed(context, AppRoutes.aboutUS),
           ),
           ListItem(
             title: "Contact us",
@@ -48,7 +54,14 @@ class MyDrawer extends StatelessWidget {
           ListItem(
             title: "Log out",
             icon: Icons.logout,
-            ontap: () => FirebaseAuth.instance.signOut(),
+            ontap: () async {
+              if (FirebaseAuth
+                      .instance.currentUser!.providerData[0].providerId ==
+                  'google.com') {
+                await GoogleSignIn().disconnect();
+              }
+              FirebaseAuth.instance.signOut();
+            },
           ),
         ],
       ),
@@ -57,7 +70,9 @@ class MyDrawer extends StatelessWidget {
 }
 
 class DrawerHead extends StatelessWidget {
-  const DrawerHead({super.key});
+  final String? profile;
+  final String email;
+  const DrawerHead({super.key, required this.email, required this.profile});
 
   @override
   Widget build(BuildContext context) {
@@ -65,17 +80,32 @@ class DrawerHead extends StatelessWidget {
       height: 200,
       width: double.infinity,
       color: const Color.fromARGB(255, 109, 158, 53),
-      child: const Column(
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          CircleAvatar(
-            radius: 50,
-            foregroundImage: AssetImage("assets/images/profile.png"),
+          profile == null
+              ? CircleAvatar(
+                  radius: 50,
+                  backgroundImage:
+                      const AssetImage("assets/images/profile.png"),
+                  backgroundColor: Theme.of(context).primaryColor,
+                )
+              : CircleAvatar(
+                  radius: 50,
+                  backgroundImage: NetworkImage(profile!),
+                  backgroundColor: Theme.of(context).primaryColor,
+                ),
+          const SizedBox(
+            height: 10,
           ),
           Text(
-            "Name",
-            style: TextStyle(fontSize: 20, color: Colors.white60),
+            email,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+                fontSize: 20,
+                color: Colors.white60,
+                overflow: TextOverflow.fade),
           ),
         ],
       ),
@@ -98,12 +128,15 @@ class ListItem extends StatelessWidget {
     return ListTile(
       title: Text(
         title,
-        style: const TextStyle(fontSize: 18, color: Colors.black45),
+        style: TextStyle(
+          fontSize: 18,
+          color: title == 'Log out' ? Colors.red : Colors.black45,
+        ),
       ),
       leading: Icon(
         icon,
         size: 18,
-        color: Colors.black45,
+        color: title == 'Log out' ? Colors.red : Colors.black45,
       ),
       onTap: () {
         Navigator.pop(context);

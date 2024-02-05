@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:mini_project/pages/about_us.dart';
 import 'package:mini_project/pages/homepage/home_page.dart';
 import 'package:mini_project/pages/article_page.dart';
 import 'package:mini_project/pages/book_appointment_page.dart';
 import 'package:mini_project/pages/my_records_page.dart';
 import 'package:mini_project/pages/prescriptoin_page.dart';
+import 'package:mini_project/pages/profile_page.dart';
 import 'package:mini_project/pages/reset_password_page.dart';
 import 'package:mini_project/pages/upload_doc.dart';
 import 'package:mini_project/routes/routes.dart';
@@ -29,6 +31,10 @@ Route<dynamic> getRoute(RouteSettings settings) {
       return buildRoute(const UploadDoc(), settings: settings);
     case AppRoutes.resetPassword:
       return buildRoute(const ResetPasswordPage(), settings: settings);
+    case AppRoutes.profile:
+      return buildRoute(const ProfilePage(), settings: settings);
+    case AppRoutes.aboutUS:
+      return buildRoute(const AboutUs(), settings: settings);
     default:
       return buildRoute(const SplashScreen(), settings: settings);
   }
