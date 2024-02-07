@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mini_project/pages/blog_page.dart';
 import 'package:mini_project/pages/homepage/bottom_navigation_bar.dart';
 import 'package:mini_project/pages/homepage/drawer.dart';
@@ -111,6 +112,15 @@ class _HomePageState extends State<HomePage> {
           } else {
             final userInfo = snapshot.data!.data()!;
             return Scaffold(
+              floatingActionButton: FloatingActionButton(
+                onPressed: () => Navigator.pushNamed(context, AppRoutes.aiPage),
+                backgroundColor: Theme.of(context).primaryColor,
+                tooltip: "Ai chat Bot",
+                child: const FaIcon(
+                  FontAwesomeIcons.solidMessage,
+                  color: Colors.white,
+                ),
+              ),
               // appbar
               appBar: AppBar(
                 title: const Text(

@@ -33,7 +33,7 @@ class MyDrawer extends StatelessWidget {
           ListItem(
             title: "Contact us",
             icon: FontAwesomeIcons.phone,
-            ontap: () => Navigator.pushNamed(context, AppRoutes.myRecords),
+            ontap: () => Navigator.pushNamed(context, AppRoutes.aiPage),
           ),
           const Divider(
             thickness: 1,

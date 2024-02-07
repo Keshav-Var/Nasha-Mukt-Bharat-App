@@ -10,4 +10,5 @@ class AppRoutes {
   static const resetPassword = '/reset_password_page';
   static const profile = '/profile_page';
   static const aboutUS = '/about_us';
+  static const aiPage = '/ai_chatbot_page';
 }

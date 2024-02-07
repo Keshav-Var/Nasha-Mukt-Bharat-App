@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mini_project/pages/about_us.dart';
+import 'package:mini_project/pages/ai_chatbot_page.dart';
 import 'package:mini_project/pages/homepage/home_page.dart';
 import 'package:mini_project/pages/article_page.dart';
 import 'package:mini_project/pages/book_appointment_page.dart';
@@ -35,6 +36,8 @@ Route<dynamic> getRoute(RouteSettings settings) {
       return buildRoute(const ProfilePage(), settings: settings);
     case AppRoutes.aboutUS:
       return buildRoute(const AboutUs(), settings: settings);
+    case AppRoutes.aiPage:
+      return buildRoute(const AiChatPage(), settings: settings);
     default:
       return buildRoute(const SplashScreen(), settings: settings);
   }
