@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:mini_project/screats.dart';
+import 'package:mini_project/secrets.dart';
 
 class AiChatPage extends StatefulWidget {
   const AiChatPage({super.key});

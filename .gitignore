@@ -8,7 +8,7 @@
 .buildlog/
 .history
 .svn/
-lib/screats.dart
+lib/secrets.dart
 migrate_working_dir/
 
 # IntelliJ related
