@@ -163,9 +163,8 @@ Future<String> openAi(String message) async {
     ]
   }),
     );
-    return jsonDecode(result.body)['candidates'][0]['content']['parts'][0]['text'];;
+    return jsonDecode(result.body)['candidates'][0]['content']['parts'][0]['text'];
   } catch (e) {
-    print(e.toString());
     return "Something went worng!\nPlease try later";
   }
 }
