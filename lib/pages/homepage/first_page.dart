@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mini_project/routes/routes.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:flutter_share/flutter_share.dart';
 
 class FirstPage extends StatefulWidget {
   const FirstPage({super.key});
@@ -77,15 +76,15 @@ class _FirstPageState extends State<FirstPage> {
 class InviteCard extends StatelessWidget {
   const InviteCard({super.key});
   void share() async {
-    String appLink =
-        'https://play.google.com/store/apps/details?id=com.example.myapp';
-    String message = 'Check out my new app:';
+    // String appLink =
+    //     'https://play.google.com/store/apps/details?id=com.example.myapp';
+    // String message = 'Check out my new app:';
 
-    await FlutterShare.share(
-      title: 'Invite on Nasha Mukt Bharat App',
-      text: message,
-      linkUrl: appLink,
-    );
+    // await FlutterShare.share(
+    //   title: 'Invite on Nasha Mukt Bharat App',
+    //   text: message,
+    //   linkUrl: appLink,
+    // );
   }
 
   @override

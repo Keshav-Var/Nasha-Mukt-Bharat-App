@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:mini_project/screats.dart';
 
 class AiChatPage extends StatefulWidget {
   const AiChatPage({super.key});
@@ -142,25 +143,29 @@ class _AiChatPage extends State<AiChatPage> {
   }
 }
 
-const apiKey = "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";
+const apiKey = API_KEY;
 Future<String> openAi(String message) async {
   try {
     final result = await http.post(
-      Uri.parse('https://api.openai.com/v1/chat/completions'),
+      Uri.parse('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=$apiKey'),
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer $apiKey',
       },
       body: jsonEncode({
-        "model": "gpt-3.5-turbo",
-        "messages": [
-          {"role": "user", "content": message}
-        ],
-      }),
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": message
+          }
+        ]
+      }
+    ]
+  }),
     );
-
-    return jsonDecode(result.body)['choices'][0]['message']['content'];
+    return jsonDecode(result.body)['candidates'][0]['content']['parts'][0]['text'];;
   } catch (e) {
+    print(e.toString());
     return "Something went worng!\nPlease try later";
   }
 }
