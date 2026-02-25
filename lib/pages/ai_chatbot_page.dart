@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:mini_project/secrets.dart';
+//import 'package:mini_project/secrets.dart';
 
 class AiChatPage extends StatefulWidget {
   const AiChatPage({super.key});
@@ -143,7 +143,7 @@ class _AiChatPage extends State<AiChatPage> {
   }
 }
 
-const apiKey = API_KEY;
+const apiKey = '';
 Future<String> openAi(String message) async {
   try {
     final result = await http.post(
